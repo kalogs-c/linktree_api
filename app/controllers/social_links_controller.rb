@@ -1,6 +1,7 @@
 class SocialLinksController < ApplicationController
   before_action :set_social_link, only: %i[ update destroy ]
   before_action :require_authentication
+  allow_unauthenticated_access only: :show
 
   # GET /social_links
   def index
@@ -50,6 +51,6 @@ class SocialLinksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def social_link_params
-    params.expect(social_link: [:url, :description, :user_id])
+    params.expect(social_link: [ :url, :description, :user_id ])
   end
 end
