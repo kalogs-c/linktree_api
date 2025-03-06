@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   rate_limit to: 10, within: 3.minutes, only: :create, with: -> { render json: { error: "Too many requests" } }
 
   def create
-    attrs = params.permit(:email_address, :password)
+    attrs = params.permit(:name, :username, :email_address, :password)
     user = User.new(attrs)
 
     if user.save

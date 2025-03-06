@@ -1,11 +1,16 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  url: MyText
-  description: MyText
-  user: one
+kalogs_c_github:
+  url: https://github.com/kalogs-c
+  description: My GitHub profile
+  user: kalogs_c
 
-two:
-  url: MyText
-  description: MyText
-  user: two
+kalogs_c_twitter:
+  url: https://twitter.com/kalogs_c
+  description: My Twitter profile
+  user: kalogs_c
+
+brendha_github:
+  url: https://github.com/BrendhaCasaro/
+  description: My GitHub profile
+  user: brendha

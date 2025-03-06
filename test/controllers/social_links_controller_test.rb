@@ -2,7 +2,7 @@ require "test_helper"
 
 class SocialLinksControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @social_link = social_links(:one)
+    @social_link = social_links(:kalogs_c_github)
   end
 
   test "should get index" do

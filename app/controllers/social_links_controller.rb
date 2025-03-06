@@ -1,6 +1,5 @@
 class SocialLinksController < ApplicationController
   before_action :set_social_link, only: %i[ update destroy ]
-  before_action :set_user_social_links, only: :show
   before_action :require_authentication
 
   # GET /social_links
@@ -8,9 +7,11 @@ class SocialLinksController < ApplicationController
     render json: Current.user.social_links
   end
 
-  # GET /social_links/1
+  # GET /social_links/:username
   def show
-    render json: @user_social_links
+    username = params.expect(:username)
+    user_social_links = User.find_by(username: username).social_links
+    render json: user_social_links
   end
 
   # POST /social_links
@@ -45,10 +46,6 @@ class SocialLinksController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_social_link
     @social_link = SocialLink.find(params.expect(:id))
-  end
-
-  def set_user_social_links
-    @user_social_links = SocialLink.where(user_id: params.expect(:id))
   end
 
   # Only allow a list of trusted parameters through.

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get "social_links/:username" => "social_links#show"
   resources :social_links
+
   resources :users, only: [:create]
   resource :session
   resources :passwords, param: :token
