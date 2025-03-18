@@ -1,5 +1,5 @@
 class SocialLinksController < ApplicationController
-  before_action :set_social_link, only: %i[ update destroy ]
+before_action :set_social_link, only: %i[ update destroy ]
   before_action :require_authentication
   allow_unauthenticated_access only: :show
 
@@ -9,11 +9,22 @@ class SocialLinksController < ApplicationController
   end
 
   # GET /social_links/:username
-  def show
-    username = params.expect(:username)
-    user_social_links = User.find_by(username: username).social_links
-    render json: user_social_links
-  end
+    def show
+      username = params.require(:username)
+      user = User.find_by(username: username)
+    
+      if user
+        user_social_links = user.social_links
+        render json: {
+          nome: user.name,
+          email: user.email_address,
+          social_links: user_social_links
+        }
+      else
+        render json: { error: "User not found" }, status: :not_found
+      end
+    end
+    
 
   # POST /social_links
   def create
